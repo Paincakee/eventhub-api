@@ -22,7 +22,7 @@ return new class extends Migration
             $table->string('location');
             $table->dateTime('start_date');
             $table->dateTime('end_date')->nullable();
-            $table->integer('max_attendees');
+            $table->unsignedInteger('max_attendees');
             $table->string('image_url')->nullable();
             $table->boolean('is_published')->default(false);
 

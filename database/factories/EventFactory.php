@@ -48,7 +48,7 @@ class EventFactory extends Factory
 
     /**
      * Upcoming event.
-     * 
+     *
      * @return $this
      */
     public function upcoming(): static

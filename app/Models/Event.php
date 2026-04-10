@@ -46,13 +46,17 @@ class Event extends Model
 
     /**
      * Cast attributes to specific types.
-     * @var string[]
+     * @return array<string, string>
      */
-    protected $casts = [
-        'start_date' => 'datetime',
-        'end_date' => 'datetime',
-        'is_published' => 'boolean',
-    ];
+    protected function casts(): array
+    {
+        return [
+            'start_date' => 'datetime',
+            'end_date' => 'datetime',
+            'is_published' => 'boolean',
+        ];
+    }
+
 
     protected static function booted(): void
     {

@@ -35,4 +35,28 @@ class EventFactory extends Factory
             'is_published' => fake()->boolean(),
         ];
     }
+
+    /**
+     * State published.
+     *
+     * @return $this
+     */
+    public function published(): static
+    {
+        return $this->state(['is_published' => true]);
+    }
+
+    /**
+     * Upcoming event.
+     * 
+     * @return $this
+     */
+    public function upcoming(): static
+    {
+        return $this->state([
+            'start_date' => now()->addDays(7),
+            'end_date' => now()->addDays(8),
+        ]);
+    }
+
 }

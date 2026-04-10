@@ -17,9 +17,9 @@ return new class extends Migration
             $table->softDeletes();
 
             $table->string('title');
-            $table->string('slug');
+            $table->string('slug')->unique();
             $table->text('description')->nullable();
-            $table->text('location');
+            $table->string('location');
             $table->dateTime('start_date');
             $table->dateTime('end_date')->nullable();
             $table->integer('max_attendees');

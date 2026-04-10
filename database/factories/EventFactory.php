@@ -4,6 +4,7 @@ namespace Database\Factories;
 
 use App\Models\Event;
 use Illuminate\Database\Eloquent\Factories\Factory;
+use Illuminate\Support\Str;
 use Random\RandomException;
 
 /**
@@ -14,17 +15,18 @@ class EventFactory extends Factory
     /**
      * Define the model's default state.
      *
-     * @return array<string, mixed>
      * @throws RandomException
+     *
+     * @return array<string, mixed>
      */
     public function definition(): array
     {
-        $title = fake()->firstName();
+        $title = fake()->randomElement(['Kerstmarkt', 'Muziekfestival', 'Hackathon', 'Workshop', 'Netwerkborrel']).' '.fake()->city();
         $start_date = fake()->dateTime();
 
         return [
             'title' => $title,
-            'slug' => strtolower(trim($title)),
+            'slug' => str::slug($title),
             'description' => fake()->text(),
             'start_date' => $start_date,
             'end_date' => $start_date->modify('+5 days'),

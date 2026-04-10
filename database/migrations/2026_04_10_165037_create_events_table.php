@@ -25,6 +25,8 @@ return new class extends Migration
             $table->integer('max_attendees');
             $table->string('image_url')->nullable();
             $table->boolean('is_published')->default(false);
+
+            $table->index(['start_date', 'is_published']);
         });
     }
 

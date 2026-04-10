@@ -8,6 +8,7 @@ use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use Illuminate\Support\Str;
 
 /**
  * @property int $id
@@ -53,6 +54,32 @@ class Event extends Model
         'is_published' => 'boolean',
     ];
 
+    protected static function booted(): void
+    {
+        static::creating(function (self $event) {
+            $event->slug = self::generateSlug($event, 1);
+        });
+    }
+
+    /**
+     * Generate a unique slug for the event.
+     *
+     * @param Event $event
+     * @return string
+     */
+    private static function generateSlug(self $event, int $i): string
+    {
+        $slug = $event->slug;
+        $isUsed = self::query()->where('slug', $slug)->where('id', '!=', $event->id)->exists();
+
+        if ($isUsed) {
+            $slug = $event->slug . '-' . $i;
+            $i++;
+            self::generateSlug($event, $i);
+        }
+
+        return Str::slug($slug);
+    }
 
     /**
      * Returns only published events.

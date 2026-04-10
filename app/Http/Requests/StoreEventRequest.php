@@ -11,7 +11,7 @@ class StoreEventRequest extends FormRequest
      */
     public function authorize(): bool
     {
-        return false;
+        return true;
     }
 
     /**
@@ -28,7 +28,7 @@ class StoreEventRequest extends FormRequest
             'end_date' => 'datetime',
             'location' => 'string|max:255',
             'max_attendees' => 'required|integer|min:1',
-            'image_url' => 'nullable|url',
+            'image_url' => 'url',
             'is_published' => 'boolean',
         ];
     }

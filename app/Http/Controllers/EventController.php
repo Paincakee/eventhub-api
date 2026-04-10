@@ -47,7 +47,7 @@ class EventController extends Controller
         $validated = $request->validated();
         $event = Event::create($validated);
 
-        return new EventResource($event);
+        return new EventResource($event->refresh());
     }
 
     /**

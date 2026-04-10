@@ -7,7 +7,6 @@ use App\Http\Requests\UpdateEventRequest;
 use App\Http\Resources\EventResource;
 use App\Models\Event;
 use App\Repositories\EventRepository;
-use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\AnonymousResourceCollection;
 use Illuminate\Http\Response;
@@ -41,14 +40,14 @@ class EventController extends Controller
      *
      * @param StoreEventRequest $request
      *
-     * @return JsonResponse
+     * @return EventResource
      */
-    public function store(StoreEventRequest $request): JsonResponse
+    public function store(StoreEventRequest $request): EventResource
     {
         $validated = $request->validated();
         $event = Event::create($validated);
 
-        return (new EventResource($event))->response()->setStatusCode(201);
+        return new EventResource($event);
     }
 
     /**

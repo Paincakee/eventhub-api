@@ -71,6 +71,7 @@ class Event extends Model
         static::creating(function (self $event) {
             $base = Str::slug($event->title);
             $event->slug = self::generateSlug($base, 1);
+            $event->is_published = false;
         });
     }
 

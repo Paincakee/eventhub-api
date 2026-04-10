@@ -23,13 +23,12 @@ class StoreEventRequest extends FormRequest
     {
         return [
             'title' => 'required|string|max:255',
-            'description' => 'string',
-            'start_date' => 'required|datetime',
-            'end_date' => 'datetime',
-            'location' => 'string|max:255',
+            'description' => 'nullable|string',
+            'start_date' => 'required|date',
+            'end_date' => 'nullable|date|after:start_date',
+            'location' => 'required|string|max:255',
             'max_attendees' => 'required|integer|min:1',
-            'image_url' => 'url',
-            'is_published' => 'boolean',
+            'image_url' => 'nullable|url',
         ];
     }
 }

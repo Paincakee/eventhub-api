@@ -8,14 +8,14 @@ class UpdateEventRequest extends StoreEventRequest
     public function rules(): array
     {
         return [
-            'title' => 'somtimes|string|max:255',
-            'description' => 'somtimes|string',
-            'start_date' => 'somtimes|datetime',
-            'end_date' => 'somtimes|datetime',
-            'location' => 'somtimes|string|max:255',
-            'max_attendees' => 'somtimes|integer|min:1',
-            'image_url' => 'somtimes|url',
-            'is_published' => 'somtimes|boolean',
+            'title' => 'sometimes|string|max:255',
+            'description' => 'sometimes|string',
+            'start_date' => 'sometimes|date',
+            'end_date' => 'sometimes|date|after:start_date',
+            'location' => 'sometimes|string|max:255',
+            'max_attendees' => 'sometimes|integer|min:1',
+            'image_url' => 'sometimes|url',
+            'is_published' => 'sometimes|boolean',
         ];
     }
 }

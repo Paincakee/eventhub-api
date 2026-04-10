@@ -24,7 +24,7 @@ class EventRepository
         /** @var Builder<Event> $builder */
         $queryBuilder
             ->allowedFilters([
-                AllowedFilter::scope('scopePublished', 'published'),
+                AllowedFilter::scope('published'),
             ])
             ->allowedSorts([
                 'title',

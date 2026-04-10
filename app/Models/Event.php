@@ -12,6 +12,9 @@ use Illuminate\Support\Str;
 
 /**
  * @property int $id
+ * @property Carbon $created_at
+ * @property Carbon $updated_at
+ * @property Carbon $deleted_at
  * @property string $title
  * @property string|null $slug
  * @property string|null $description
@@ -43,6 +46,14 @@ class Event extends Model
         'image_url',
         'is_published',
     ];
+
+    /**
+     * Get the route key for the model.
+     */
+    public function getRouteKeyName(): string
+    {
+        return 'slug';
+    }
 
     /**
      * Cast attributes to specific types.

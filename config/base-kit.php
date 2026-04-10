@@ -1,10 +1,13 @@
 <?php
 
+use App\Enums\UserRole;
+use App\Models\User;
+
 return [
     /*
      * Class for user model.
      */
-    'user_model' => \Encore\BaseKit\Models\User::class,
+    'user_model' => User::class,
 
     /*
      * Class for user resource.
@@ -29,7 +32,7 @@ return [
     /*
      * Class for all user roles.
      */
-    'user_roles' => \Encore\BaseKit\Enums\UserRole::class,
+    'user_roles' => UserRole::class,
 
     /**
      * All available permissions.

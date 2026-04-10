@@ -26,7 +26,7 @@ class EventFactory extends Factory
 
         return [
             'title' => $title,
-            'slug' => str::slug($title),
+            'slug' => Str::slug($title),
             'description' => fake()->text(),
             'start_date' => $start_date,
             'end_date' => $start_date->modify('+5 days'),

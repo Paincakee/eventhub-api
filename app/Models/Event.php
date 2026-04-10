@@ -7,6 +7,7 @@ use Database\Factories\EventFactory;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 /**
  * @property int $id
@@ -24,6 +25,7 @@ class Event extends Model
 {
     /** @use HasFactory<EventFactory> */
     use HasFactory;
+    use SoftDeletes;
 
     /**
      * Mass assignable attributes.

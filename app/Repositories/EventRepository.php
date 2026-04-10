@@ -3,7 +3,6 @@
 namespace App\Repositories;
 
 use App\Models\Event;
-use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Http\Request;
 use Spatie\QueryBuilder\AllowedFilter;
 use Spatie\QueryBuilder\QueryBuilder;
@@ -21,7 +20,6 @@ class EventRepository
         /** @var QueryBuilder<Event> $queryBuilder */
         $queryBuilder = QueryBuilder::for(Event::class, $request);
 
-        /** @var Builder<Event> $builder */
         $queryBuilder
             ->allowedFilters([
                 AllowedFilter::scope('published'),

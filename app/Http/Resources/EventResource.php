@@ -27,6 +27,8 @@ class EventResource extends JsonResource
             'max_attendees' => $this->max_attendees,
             'image_url' => $this->image_url,
             'is_published' => $this->is_published,
+            'created_at' => $this->created_at,
+            'updated_at' => $this->updated_at,
         ];
     }
 }

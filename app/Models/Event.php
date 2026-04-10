@@ -12,6 +12,9 @@ use Illuminate\Support\Str;
 
 /**
  * @property int $id
+ * @property Carbon $created_at
+ * @property Carbon $updated_at
+ * @property Carbon $deleted_at
  * @property string $title
  * @property string|null $slug
  * @property string|null $description

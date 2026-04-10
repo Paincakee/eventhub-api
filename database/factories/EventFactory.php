@@ -23,7 +23,7 @@ class EventFactory extends Factory
     {
         $title = fake()->randomElement(['Kerstmarkt', 'Muziekfestival', 'Hackathon', 'Workshop', 'Netwerkborrel']).' '.fake()->city();
         $start_date = fake()->dateTime();
-
+$title = 'hallo';
         return [
             'title' => $title,
             'slug' => Str::slug($title),

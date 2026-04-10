@@ -57,7 +57,8 @@ class Event extends Model
     protected static function booted(): void
     {
         static::creating(function (self $event) {
-            $event->slug = self::generateSlug($event, 1);
+            $base = Str::slug($event->title);
+            $event->slug = self::generateSlug($base, 1);
         });
     }
 
@@ -67,18 +68,17 @@ class Event extends Model
      * @param Event $event
      * @return string
      */
-    private static function generateSlug(self $event, int $i): string
+    private static function generateSlug(string $baseSlug, int $counter): string
     {
-        $slug = $event->slug;
-        $isUsed = self::query()->where('slug', $slug)->where('id', '!=', $event->id)->exists();
+        $slug = $counter > 1 ? $baseSlug . '-'. $counter : $baseSlug;
+        $isUsed = self::query()->where('slug', $slug)->exists();
 
         if ($isUsed) {
-            $slug = $event->slug . '-' . $i;
-            $i++;
-            self::generateSlug($event, $i);
+            $counter++;
+            return self::generateSlug($baseSlug, $counter);
         }
 
-        return Str::slug($slug);
+        return $slug;
     }
 
     /**

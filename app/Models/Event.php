@@ -58,14 +58,15 @@ class Event extends Model
     {
         static::creating(function (self $event) {
             $base = Str::slug($event->title);
-            $event->slug = self::generateSlug($base, 1);
+            $event->slug = $event->slug ?: self::generateSlug($base, 1);
         });
     }
 
     /**
      * Generate a unique slug for the event.
      *
-     * @param Event $event
+     * @param string $baseSlug
+     * @param int $counter
      * @return string
      */
     private static function generateSlug(string $baseSlug, int $counter): string

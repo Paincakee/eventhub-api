@@ -14,13 +14,9 @@ use Illuminate\Http\Response;
 
 class EventController extends Controller
 {
-    use AuthorizesRequests;
-
     public function __construct(
         private readonly EventRepository $repository)
-    {
-        $this->authorizeResource(Event::class);
-    }
+    {}
 
     /**
      * Display a listing of the events.

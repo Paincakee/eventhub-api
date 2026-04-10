@@ -1,0 +1,11 @@
+#!/bin/sh
+set -e
+
+# Cache configuration
+php artisan config:cache
+
+# Cache views
+php artisan view:cache
+
+# Migrate database
+php artisan migrate --force

@@ -1,0 +1,10 @@
+{
+    "preset": "per",
+    "rules": {
+        "phpdoc_separation": true,
+        "no_empty_phpdoc": true,
+        "phpdoc_add_missing_param_annotation": true,
+        "phpdoc_order": true,
+        "phpdoc_summary": true
+    }
+}

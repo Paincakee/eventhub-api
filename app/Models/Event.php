@@ -4,9 +4,11 @@ namespace App\Models;
 
 use Carbon\Carbon;
 use Database\Factories\EventFactory;
+use Illuminate\Database\Eloquent\Attributes\UseFactory;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Support\Str;
 
@@ -24,15 +26,18 @@ use Illuminate\Support\Str;
  * @property int $max_attendees
  * @property string|null $image_url
  * @property bool $is_published
+ *
+ * @property-read Registration[] $registrations
  */
+#[UseFactory(EventFactory::class)]
 class Event extends Model
 {
-    /** @use HasFactory<EventFactory> */
     use HasFactory;
     use SoftDeletes;
 
     /**
      * Mass assignable attributes.
+     *
      * @var string[]
      */
     protected $fillable = [
@@ -57,6 +62,7 @@ class Event extends Model
 
     /**
      * Cast attributes to specific types.
+     *
      * @return array<string, string>
      */
     protected function casts(): array
@@ -68,6 +74,13 @@ class Event extends Model
         ];
     }
 
+    /**
+     * @return HasMany<Registration, self>
+     */
+    public function registrations(): HasMany
+    {
+        return $this->hasMany(Registration::class);
+    }
 
     protected static function booted(): void
     {

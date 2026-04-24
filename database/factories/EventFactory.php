@@ -31,7 +31,7 @@ class EventFactory extends Factory
             'end_date' => $start_date->modify('+5 days'),
             'location' => fake()->address(),
             'max_attendees' => random_int(10, 100),
-            'image_url' => fake()->imageUrl(),
+            'image_url' => 'https://picsum.photos/640/480',
             'is_published' => fake()->boolean(),
         ];
     }

@@ -14,17 +14,17 @@ class UpdateRegistrationRequest extends StoreEventRequest
         return [
             'event_id' => [
                 'sometimes',
-                'exists:events,id'
+                'exists:events,id',
             ],
             'name' => [
                 'sometimes',
                 'string',
-                'max:255'
+                'max:255',
             ],
             'email' => [
                 'sometimes',
                 'email',
-                'unique:registrations'
+                'unique:registrations',
             ],
             'user_id' => [
                 'sometimes',

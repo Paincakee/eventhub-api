@@ -22,13 +22,38 @@ class StoreEventRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'title' => 'required|string|max:255',
-            'description' => 'nullable|string',
-            'start_date' => 'required|date',
-            'end_date' => 'nullable|date|after:start_date',
-            'location' => 'required|string|max:255',
-            'max_attendees' => 'required|integer|min:1',
-            'image_url' => 'nullable|url',
+            'title' => [
+                'required',
+                'string',
+                'max:255',
+            ],
+            'description' => [
+                'nullable',
+                'string',
+            ],
+            'start_date' => [
+                'required',
+                'date',
+            ],
+            'end_date' => [
+                'nullable',
+                'date',
+                'after:start_date',
+            ],
+            'location' => [
+                'required',
+                'string',
+                'max:255',
+            ],
+            'max_attendees' => [
+                'required',
+                'integer',
+                'min:1',
+            ],
+            'image_url' => [
+                'nullable',
+                'url',
+            ],
         ];
     }
 }

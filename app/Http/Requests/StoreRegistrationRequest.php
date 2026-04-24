@@ -22,9 +22,25 @@ class StoreRegistrationRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'event_id' => 'required|exists:events,id',
-            'name' => 'required|string|max:255',
-            'email' => 'required|email|unique:registrations,email',
+            'event_id' => [
+                'required',
+                'exists:events,id',
+            ],
+            'name' => [
+                'required',
+                'string',
+                'max:255',
+            ],
+            'email' => [
+                'required',
+                'email',
+                'unique:registrations,email',
+            ],
+            'user_id' => [
+                'nullable',
+                'exists:users,id',
+                'doesnt_exist:registrations,user_id',
+            ],
         ];
     }
 }

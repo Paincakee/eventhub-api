@@ -3,6 +3,7 @@
 namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Validation\Rule;
 
 class StoreRegistrationRequest extends FormRequest
 {
@@ -34,12 +35,14 @@ class StoreRegistrationRequest extends FormRequest
             'email' => [
                 'required',
                 'email',
-                'unique:registrations,email',
+                Rule::unique('registrations', 'email')
+                    ->where('event_id', $this->input('event_id')),
             ],
             'user_id' => [
                 'nullable',
                 'exists:users,id',
-                'doesnt_exist:registrations,user_id',
+                Rule::unique('registrations', 'user_id')
+                    ->where('event_id', $this->event_id),
             ],
         ];
     }
